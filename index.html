@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Половинка — орешки с душой</title>
+  <style>
+    /* Базовые стили */
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: #f6f2eb url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+      background-size: 300px;
+      color: #4a3b2c;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(246,242,235,0.9));
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #6a5846;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .divider {
+      width: 120px;
+      height: 30px;
+      margin: 40px auto;
+      background: url('https://www.transparenttextures.com/patterns/green-gobbler.png');
+      background-size: contain;
+      opacity: 0.3;
+      border-radius: 50px;
+    }
+
+    /* Fade-in анимация */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #f0ebe3;
+      font-size: 0.9rem;
+      color: #6a5846;
+    }
+  </style>
+</head>
+<body>
+  <header class="fade-in">
+    <h1>Половинка</h1>
+    <p>Орешки с варёной сгущёнкой, приготовленные с душой</p>
+  </header>
+
+  <div class="divider"></div>
+
+  <section class="fade-in">
+    <h2>Наш десерт</h2>
+    <p>
+      «Половинка» — это не просто орешки. Это вкус детства, тепла и уюта. 
+      Каждый орешек раскрывается мягкой выпечкой и нежной начинкой из варёной сгущёнки, 
+      создавая идеальный баланс сладости и нежности.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="fade-in">
+    <h2>Почему именно мы?</h2>
+    <p>
+      Мы печём орешки вручную, используя только лучшие ингредиенты. 
+      Каждый десерт — это маленькая история о заботе, качестве и искреннем удовольствии.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="fade-in">
+    <h2>Закажите прямо сейчас</h2>
+    <p>
+      Почувствуйте вкус настоящего десерта. 
+      Свяжитесь с нами и подарите себе момент счастья.
+    </p>
+    <p><a href="https://t.me/your_contact" style="color:#4a3b2c; text-decoration: underline;">Написать нам в Telegram</a></p>
+  </section>
+
+  <footer class="fade-in">
+    &copy; 2025 Половинка. Все права защищены.
+  </footer>
+
+  <script>
+    // Анимация появления при скролле
+    const faders = document.querySelectorAll('.fade-in');
+
+    const appearOptions = {
+      threshold: 0.2,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+</body>
+</html>
