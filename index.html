@@ -30,7 +30,10 @@
             secondary: '#C6D3B3',
             accent: '#D7BABD',
             light: '#E3DABF',
-            wood: '#8B5A2B'
+            wood: '#8B5A2B',
+            olive: '#A3B18A',
+            oliveLight: '#C8D3AB',
+            oliveDark: '#6B8F71'
           },
           fontFamily: {
             heading: ['Dancing Script','cursive'],
@@ -44,8 +47,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
+    /* Background image (place background.jpg next to this file in the repo) */
+    html { background: url('./background.jpg') center / cover fixed no-repeat; }
+    body { position: relative; }
+    /* Soft overlay to keep text readable */
+    body::before { content: ""; position: fixed; inset: 0; background: rgba(255, 255, 255, 0.88); pointer-events: none; z-index: 0; }
+
     html{scroll-behavior:smooth}
-    body{background:#f9f7f1}
+    .content-layer { position: relative; z-index: 1; }
+
     .nav-link{position:relative;padding-bottom:4px}
     .nav-link::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:#523211;transition:width .25s ease}
     @media (min-width:768px){.nav-link:hover::after{width:100%}}
@@ -83,10 +93,10 @@
 <body class="font-body text-gray-800">
 
   <!-- NAV -->
-  <nav class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur shadow">
+  <nav class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur shadow content-layer">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#home" class="text-primary font-heading text-2xl">Артём & Елена</a>
-      <button id="navToggle" class="md:hidden text-primary text-xl p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary" aria-expanded="false" aria-controls="navMenu">
+      <button id="navToggle" class="md:hidden text-primary text-xl p-2 rounded focus:outline-none focus:ring-2 focus:ring-olive" aria-expanded="false" aria-controls="navMenu">
         <i class="fa-solid fa-bars" aria-hidden="true"></i><span class="sr-only">Открыть меню</span>
       </button>
       <div id="navMenu" class="hidden md:flex md:space-x-8 flex-col md:flex-row mt-3 md:mt-0">
@@ -101,7 +111,7 @@
     </div>
   </nav>
 
-  <main class="pt-24">
+  <main class="pt-24 content-layer">
     <!-- HERO -->
     <section id="home" class="scroll-mt-24 min-h-[90vh] flex items-center pt-8 pb-16 px-4">
       <div class="max-w-7xl mx-auto text-center">
@@ -114,8 +124,8 @@
         <p class="text-2xl md:text-3xl font-subheading text-primary mt-8">25 сентября 2025</p>
         <p class="text-lg text-wood mt-2">Ресторан «Пятигорская дача», начало в 16:00</p>
         <div class="mt-10 flex items-center justify-center gap-4 flex-wrap">
-          <a href="#rsvp" class="bg-primary hover:bg-wood text-white font-medium py-3 px-6 rounded-full transition focus:outline-none focus:ring-2 focus:ring-primary">Подтвердить участие</a>
-          <button id="addToCal" class="bg-white border border-primary text-primary hover:bg-secondary/30 font-medium py-3 px-6 rounded-full transition focus:outline-none focus:ring-2 focus:ring-primary">Добавить в календарь</button>
+          <a href="#rsvp" class="bg-primary hover:bg-oliveDark text-white font-medium py-3 px-6 rounded-full transition focus:outline-none focus:ring-2 focus:ring-olive">Подтвердить участие</a>
+          <button id="addToCal" class="bg-white border border-olive text-olive hover:bg-oliveLight/30 font-medium py-3 px-6 rounded-full transition focus:outline-none focus:ring-2 focus:ring-olive">Добавить в календарь</button>
         </div>
       </div>
     </section>
@@ -123,29 +133,29 @@
     <div class="section-divider"></div>
 
     <!-- PROGRAM -->
-    <section id="program" class="scroll-mt-24 py-16 px-4 bg-white">
+    <section id="program" class="scroll-mt-24 py-16 px-4 bg-white/90 rounded-2xl mx-2">
       <div class="max-w-6xl mx-auto">
         <h2 class="text-4xl font-heading text-center text-primary mb-12">Программа дня</h2>
-        <ol class="relative border-s-2 border-secondary max-w-3xl mx-auto space-y-10">
+        <ol class="relative border-s-2 border-olive max-w-3xl mx-auto space-y-10">
           <li class="ms-6">
-            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
+            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-olive"></span>
             <h3 class="font-subheading text-xl text-primary">Сбор гостей — 15:30</h3>
-            <p class="text-wood">Welcome‑фуршет, размещение.</p>
+            <p class="text-oliveDark">Welcome‑фуршет, размещение.</p>
           </li>
           <li class="ms-6">
-            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
+            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-olive"></span>
             <h3 class="font-subheading text-xl text-primary">Церемония — 16:00</h3>
-            <p class="text-wood">Выездная регистрация в саду.</p>
+            <p class="text-oliveDark">Выездная регистрация в саду.</p>
           </li>
           <li class="ms-6">
-            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
+            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-olive"></span>
             <h3 class="font-subheading text-xl text-primary">Банкет — 17:00</h3>
-            <p class="text-wood">Тосты, тёплые слова и вкусный ужин.</p>
+            <p class="text-oliveDark">Тосты, тёплые слова и вкусный ужин.</p>
           </li>
           <li class="ms-6">
-            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
+            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-olive"></span>
             <h3 class="font-subheading text-xl text-primary">Танцы — 19:30</h3>
-            <p class="text-wood">DJ, любимые треки — заказывайте в форме.</p>
+            <p class="text-oliveDark">DJ, любимые треки — заказывайте в форме.</p>
           </li>
         </ol>
       </div>
@@ -154,11 +164,11 @@
     <div class="section-divider"></div>
 
     <!-- CALENDAR -->
-    <section id="calendar" class="scroll-mt-24 py-16 px-4 bg-white">
+    <section id="calendar" class="scroll-mt-24 py-16 px-4 bg-white/90 rounded-2xl mx-2">
       <div class="max-w-5xl mx-auto">
         <h2 class="text-4xl font-heading text-center text-primary mb-4">Календарь</h2>
-        <p class="text-center text-wood mb-10">Сентябрь 2025</p>
-        <div class="bg-light p-6 rounded-2xl shadow-lg max-w-2xl mx-auto">
+        <p class="text-center text-oliveDark mb-10">Сентябрь 2025</p>
+        <div class="bg-light/80 p-6 rounded-2xl shadow-lg max-w-2xl mx-auto">
           <div class="grid grid-cols-7 gap-2 mb-3 text-primary font-medium text-center">
             <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
           </div>
@@ -173,17 +183,17 @@
     <div class="section-divider"></div>
 
     <!-- LOCATION -->
-    <section id="location" class="scroll-mt-24 py-16 px-4 bg-secondary/20">
+    <section id="location" class="scroll-mt-24 py-16 px-4 bg-oliveLight/20 rounded-2xl mx-2">
       <div class="max-w-6xl mx-auto">
         <h2 class="text-4xl font-heading text-center text-primary mb-4">Локация</h2>
-        <p class="text-center text-wood mb-10">Ресторан «Пятигорская дача», ул. Ленина, 123, Пятигорск</p>
+        <p class="text-center text-oliveDark mb-10">Ресторан «Пятигорская дача», ул. Ленина, 123, Пятигорск</p>
         <div class="flex flex-col lg:flex-row items-center gap-10">
           <div class="lg:w-1/2 w-full space-y-3 text-lg">
             <p>Банкетный зал в стиле прованс, просторные окна на сад — идеальное место для фотографий.</p>
-            <p class="flex items-center"><i class="fa-solid fa-clock mr-3"></i>Начало церемонии в 16:00</p>
+            <p class="flex items-center text-oliveDark"><i class="fa-solid fa-clock mr-3"></i>Начало церемонии в 16:00</p>
             <div class="flex flex-wrap gap-3 pt-2">
-              <a target="_blank" rel="noopener" href="https://yandex.ru/maps/" class="px-4 py-2 rounded-full border border-primary text-primary hover:bg-secondary/30">Открыть в Яндекс.Картах</a>
-              <a target="_blank" rel="noopener" href="https://maps.google.com" class="px-4 py-2 rounded-full border border-primary text-primary hover:bg-secondary/30">Открыть в Google Maps</a>
+              <a target="_blank" rel="noopener" href="https://yandex.ru/maps/" class="px-4 py-2 rounded-full border border-olive text-olive hover:bg-oliveLight/30">Открыть в Яндекс.Картах</a>
+              <a target="_blank" rel="noopener" href="https://maps.google.com" class="px-4 py-2 rounded-full border border-olive text-olive hover:bg-oliveLight/30">Открыть в Google Maps</a>
             </div>
           </div>
           <div class="lg:w-1/2 w-full rounded-2xl overflow-hidden shadow-lg">
@@ -196,21 +206,23 @@
     <div class="section-divider"></div>
 
     <!-- DRESS CODE -->
-    <section id="dresscode" class="scroll-mt-24 py-16 px-4 bg-white">
+    <section id="dresscode" class="scroll-mt-24 py-16 px-4 bg-white/90 rounded-2xl mx-2">
       <div class="max-w-6xl mx-auto">
         <h2 class="text-4xl font-heading text-center text-primary mb-4">Дресс‑код</h2>
-        <p class="text-center text-wood mb-10">С радостью увидим вас в этих оттенках</p>
+        <p class="text-center text-oliveDark mb-10">С радостью увидим вас в этих оттенках</p>
         <div class="flex flex-wrap justify-center gap-8 mb-8">
-          <div class="w-28 h-28 rounded-full shadow" style="background:#E3DABF" title="Песочный"></div>
+          <!-- заменённый цвет: был E1DAC2/E3DABF, теперь D8CBBB -->
+          <div class="w-28 h-28 rounded-full shadow" style="background:#D8CBBB" title="Песочный тёплый"></div>
           <div class="w-28 h-28 rounded-full shadow" style="background:#D7BABD" title="Розовый дымка"></div>
-          <div class="w-28 h-28 rounded-full shadow" style="background:#C6D3B3" title="Оливковый"></div>
+          <div class="w-28 h-28 rounded-full shadow" style="background:#C6D3B3" title="Оливковый светлый"></div>
+          <div class="w-28 h-28 rounded-full shadow" style="background:#A3B18A" title="Оливковый"></div>
           <div class="w-28 h-28 rounded-full shadow" style="background:#523211" title="Шоколад"></div>
         </div>
         <ul class="max-w-3xl mx-auto space-y-3 text-lg">
-          <li class="flex items-start"><i class="fa-solid fa-check text-accent mt-1 mr-3"></i>Элегантные платья в пастельных тонах</li>
-          <li class="flex items-start"><i class="fa-solid fa-check text-accent mt-1 mr-3"></i>Костюмы в бежевых, коричневых или оливковых оттенках</li>
-          <li class="flex items-start"><i class="fa-solid fa-check text-accent mt-1 mr-3"></i>Избегайте белого цвета (кроме невесты)</li>
-          <li class="flex items-start"><i class="fa-solid fa-check text-accent mt-1 mr-3"></i>Украшения в золотых/бронзовых оттенках</li>
+          <li class="flex items-start"><i class="fa-solid fa-check text-olive mt-1 mr-3"></i>Элегантные платья в пастельных/песочных тонах</li>
+          <li class="flex items-start"><i class="fa-solid fa-check text-olive mt-1 mr-3"></i>Костюмы в бежевых и оливковых оттенках</li>
+          <li class="flex items-start"><i class="fa-solid fa-check text-olive mt-1 mr-3"></i>Избегайте белого цвета (кроме невесты)</li>
+          <li class="flex items-start"><i class="fa-solid fa-check text-olive mt-1 mr-3"></i>Украшения в тёплых металлах</li>
         </ul>
       </div>
     </section>
@@ -218,19 +230,19 @@
     <div class="section-divider"></div>
 
     <!-- RSVP -->
-    <section id="rsvp" class="scroll-mt-24 py-16 px-4 bg-secondary/10">
+    <section id="rsvp" class="scroll-mt-24 py-16 px-4 bg-oliveLight/20 rounded-2xl mx-2">
       <div class="max-w-5xl mx-auto">
         <h2 class="text-4xl font-heading text-center text-primary mb-8">RSVP</h2>
-        <p class="text-center text-wood mb-8">Пожалуйста, подтвердите участие до 10 сентября</p>
-        <form action="https://formspree.io/f/xvgqernv" method="POST" class="grid gap-4 max-w-xl mx-auto bg-white p-6 rounded-2xl shadow">
-          <input name="name" required placeholder="Ваше имя" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary" />
-          <input name="contacts" type="text" placeholder="Контакты (телефон / WhatsApp / Telegram) — можно оставить пустым" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary" />
-          <select name="guests" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+        <p class="text-center text-oliveDark mb-8">Пожалуйста, подтвердите участие до 10 сентября</p>
+        <form action="https://formspree.io/f/xvgqernv" method="POST" class="grid gap-4 max-w-xl mx-auto bg-white/95 p-6 rounded-2xl shadow border border-olive/20">
+          <input name="name" required placeholder="Ваше имя" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-olive" />
+          <input name="contacts" type="text" placeholder="Контакты (телефон / WhatsApp / Telegram) — можно оставить пустым" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-olive" />
+          <select name="guests" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-olive">
             <option value="1">Я приду один/одна</option>
             <option value="2">Мы будем вдвоём</option>
             <option value="3+">Нас будет больше</option>
           </select>
-          <textarea name="notes" placeholder="Пожелания/аллергии/трек для ди‑джея" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+          <textarea name="notes" placeholder="Пожелания/аллергии/трек для ди‑джея" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-olive"></textarea>
 
           <!-- Formspree helpers -->
           <input type="hidden" name="_subject" value="RSVP со страницы свадьбы">
@@ -238,39 +250,39 @@
           <input type="text" name="_gotcha" style="display:none">
           <input type="hidden" name="source" value="wedding-site">
 
-          <button class="bg-primary text-white py-3 rounded-lg hover:bg-wood focus:outline-none focus:ring-2 focus:ring-primary">Отправить</button>
+          <button class="bg-olive text-white py-3 rounded-lg hover:bg-oliveDark focus:outline-none focus:ring-2 focus:ring-olive">Отправить</button>
         </form>
-        <div class="max-w-xl mx-auto mt-6 text-sm text-gray-600 text-center">Можно указать номер WhatsApp/телефон, ник Telegram или ничего не указывать.</div>
+        <div class="max-w-xl mx-auto mt-6 text-sm text-oliveDark text-center">Можно указать номер WhatsApp/телефон, ник Telegram или ничего не указывать.</div>
       </div>
     </section>
 
     <div class="section-divider"></div>
 
     <!-- TIMER -->
-    <section id="timer" class="scroll-mt-24 py-16 px-4 bg-wood/10">
+    <section id="timer" class="scroll-mt-24 py-16 px-4 bg-white/90 rounded-2xl mx-2">
       <div class="max-w-6xl mx-auto text-center">
         <h2 class="text-4xl font-heading text-primary mb-6">Обратный отсчёт</h2>
-        <p class="text-wood mb-10">До нашего дня осталось:</p>
+        <p class="text-oliveDark mb-10">До нашего дня осталось:</p>
         <div class="flex flex-wrap justify-center gap-6 md:gap-10">
-          <div class="bg-white rounded-2xl shadow p-6 w-40"><div id="days" class="text-5xl font-subheading text-primary">00</div><div class="text-wood mt-2">Дней</div></div>
-          <div class="bg-white rounded-2xl shadow p-6 w-40"><div id="hours" class="text-5xl font-subheading text-primary">00</div><div class="text-wood mt-2">Часов</div></div>
-          <div class="bg-white rounded-2xl shadow p-6 w-40"><div id="minutes" class="text-5xl font-subheading text-primary">00</div><div class="text-wood mt-2">Минут</div></div>
-          <div class="bg-white rounded-2xl shadow p-6 w-40"><div id="seconds" class="text-5xl font-subheading text-primary">00</div><div class="text-wood mt-2">Секунд</div></div>
+          <div class="bg-white rounded-2xl shadow p-6 w-40 border border-olive/20"><div id="days" class="text-5xl font-subheading text-primary">00</div><div class="text-oliveDark mt-2">Дней</div></div>
+          <div class="bg-white rounded-2xl shadow p-6 w-40 border border-olive/20"><div id="hours" class="text-5xl font-subheading text-primary">00</div><div class="text-oliveDark mt-2">Часов</div></div>
+          <div class="bg-white rounded-2xl shadow p-6 w-40 border border-olive/20"><div id="minutes" class="text-5xl font-subheading text-primary">00</div><div class="text-oliveDark mt-2">Минут</div></div>
+          <div class="bg-white rounded-2xl shadow p-6 w-40 border border-olive/20"><div id="seconds" class="text-5xl font-subheading text-primary">00</div><div class="text-oliveDark mt-2">Секунд</div></div>
         </div>
         <div class="mt-10">
-          <a href="#home" class="inline-block bg-primary hover:bg-wood text-white font-medium py-3 px-8 rounded-full transition focus:outline-none focus:ring-2 focus:ring-primary">Вернуться на главную</a>
+          <a href="#home" class="inline-block bg-olive hover:bg-oliveDark text-white font-medium py-3 px-8 rounded-full transition focus:outline-none focus:ring-2 focus:ring-olive">Вернуться на главную</a>
         </div>
       </div>
     </section>
   </main>
 
   <!-- BACK TO TOP -->
-  <button id="toTop" class="fixed bottom-6 right-6 hidden items-center gap-2 bg-primary text-white px-4 py-2 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Наверх">
+  <button id="toTop" class="fixed bottom-6 right-6 hidden items-center gap-2 bg-olive text-white px-4 py-2 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-olive" aria-label="Наверх">
     <i class="fa-solid fa-arrow-up"></i>
   </button>
 
   <!-- FOOTER -->
-  <footer class="bg-primary text-white py-10 px-4">
+  <footer class="bg-primary text-white py-10 px-4 content-layer">
     <div class="max-w-7xl mx-auto text-center">
       <div class="text-3xl font-heading mb-2">Артём & Елена</div>
       <p class="mb-2">25 сентября 2025</p>
@@ -327,7 +339,7 @@
 
       for(let d=1; d<=last.getDate(); d++){
         const el = document.createElement('div');
-        el.className='heart-wrap text-center py-3 rounded-md bg-white';
+        el.className='heart-wrap text-center py-3 rounded-md bg-white/90 border border-olive/10';
 
         if(d===25){
           el.classList.add('relative');
@@ -380,7 +392,7 @@
     function showSuccessIfAny(){
       if (location.hash.includes('success=1')) {
         const note = document.createElement('div');
-        note.className = 'max-w-xl mx-auto my-4 p-4 rounded bg-green-100 text-green-800 text-center';
+        note.className = 'max-w-xl mx-auto my-4 p-4 rounded bg-oliveLight/40 text-oliveDark text-center border border-olive/30';
         note.textContent = 'Спасибо! Ваша заявка отправлена.';
         const rsvp = document.getElementById('rsvp');
         if (rsvp) rsvp.prepend(note);
