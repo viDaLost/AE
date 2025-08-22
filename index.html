@@ -47,11 +47,27 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
-    /* Background image (place background.jpg next to this file in the repo) */
-    html { background: url('./background.jpg') center / cover fixed no-repeat; }
-    body { position: relative; }
-    /* Soft overlay to keep text readable */
-    body::before { content: ""; position: fixed; inset: 0; background: rgba(255, 255, 255, 0.88); pointer-events: none; z-index: 0; }
+    /* ЕДИНЫЙ ФОН (работает на мобильных через псевдо-элемент) */
+    body {
+      position: relative;
+      min-height: 100vh;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: url('./background.jpg') center / cover no-repeat;
+    }
+    /* Мягкая вуаль для читабельности текста */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.88);
+      pointer-events: none;
+      z-index: -1;
+    }
 
     html{scroll-behavior:smooth}
     .content-layer { position: relative; z-index: 1; }
@@ -63,7 +79,7 @@
     .section-divider{height:2px;background:linear-gradient(90deg,transparent,#C6D3B3,transparent)}
     @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.nav-link::after{transition:none}}
 
-    /* Heart pulse for calendar (25th) */
+    /* Сердце в календаре */
     .heart-wrap { position: relative; }
     .heart-number { position: relative; z-index: 10; font-weight: 700; }
     .heart-svg { position: absolute; inset: 0; margin: auto; width: 56px; height: 56px; pointer-events: none; animation: heartbeat 1.6s ease-in-out infinite; z-index: 20; color: #D7BABD; }
@@ -104,7 +120,7 @@
         <a class="nav-link text-primary font-medium" href="#program">Программа</a>
         <a class="nav-link text-primary font-medium" href="#calendar">Календарь</a>
         <a class="nav-link text-primary font-medium" href="#location">Локация</a>
-        <a class="nav-link text-primary font-medium" href="#dresscode">Дресс‑код</a>
+        <a class="nav-link text-primary font-medium" href="#dresscode">Дресс-код</a>
         <a class="nav-link text-primary font-medium" href="#rsvp">RSVP</a>
         <a class="nav-link text-primary font-medium" href="#timer">Таймер</a>
       </div>
@@ -140,7 +156,7 @@
           <li class="ms-6">
             <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-olive"></span>
             <h3 class="font-subheading text-xl text-primary">Сбор гостей — 15:30</h3>
-            <p class="text-oliveDark">Welcome‑фуршет, размещение.</p>
+            <p class="text-oliveDark">Welcome-фуршет, размещение.</p>
           </li>
           <li class="ms-6">
             <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-olive"></span>
@@ -208,7 +224,7 @@
     <!-- DRESS CODE -->
     <section id="dresscode" class="scroll-mt-24 py-16 px-4 bg-white/90 rounded-2xl mx-2">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl font-heading text-center text-primary mb-4">Дресс‑код</h2>
+        <h2 class="text-4xl font-heading text-center text-primary mb-4">Дресс-код</h2>
         <p class="text-center text-oliveDark mb-10">С радостью увидим вас в этих оттенках</p>
         <div class="flex flex-wrap justify-center gap-8 mb-8">
           <!-- заменённый цвет: был E1DAC2/E3DABF, теперь D8CBBB -->
@@ -242,7 +258,7 @@
             <option value="2">Мы будем вдвоём</option>
             <option value="3+">Нас будет больше</option>
           </select>
-          <textarea name="notes" placeholder="Пожелания/аллергии/трек для ди‑джея" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-olive"></textarea>
+          <textarea name="notes" placeholder="Пожелания/аллергии/трек для ди-джея" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-olive"></textarea>
 
           <!-- Formspree helpers -->
           <input type="hidden" name="_subject" value="RSVP со страницы свадьбы">
