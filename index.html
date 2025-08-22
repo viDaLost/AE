@@ -55,8 +55,9 @@
 
     /* Heart pulse for calendar (25th) */
     .heart-wrap { position: relative; }
-    .heart-svg { position: absolute; inset: 0; margin: auto; width: 44px; height: 44px; pointer-events: none; animation: heartbeat 1.6s ease-in-out infinite; }
-    @keyframes heartbeat { 0% { transform: scale(0.9); opacity: .7; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(0.9); opacity: .7; } }
+    .heart-number { position: relative; z-index: 10; font-weight: 700; }
+    .heart-svg { position: absolute; inset: 0; margin: auto; width: 56px; height: 56px; pointer-events: none; animation: heartbeat 1.6s ease-in-out infinite; z-index: 20; color: #D7BABD; }
+    @keyframes heartbeat { 0% { transform: scale(0.9); opacity: .7; } 50% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(0.9); opacity: .7; } }
   </style>
 
   <!-- Schema.org Event -->
@@ -93,176 +94,175 @@
         <a class="nav-link text-primary font-medium" href="#program">Программа</a>
         <a class="nav-link text-primary font-medium" href="#calendar">Календарь</a>
         <a class="nav-link text-primary font-medium" href="#location">Локация</a>
-        <a class="nav-link text-primary font-medium" href="#dresscode">Дресс-код</a>
+        <a class="nav-link text-primary font-medium" href="#dresscode">Дресс‑код</a>
         <a class="nav-link text-primary font-medium" href="#rsvp">RSVP</a>
         <a class="nav-link text-primary font-medium" href="#timer">Таймер</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section id="home" class="scroll-mt-24 min-h-[90vh] flex items-center pt-24 pb-16 px-4">
-    <div class="max-w-7xl mx-auto text-center">
-      <h1 class="text-4xl md:text-6xl font-heading text-primary">Приглашаем вас на нашу свадьбу</h1>
-      <div class="mt-8 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
-        <span class="text-5xl font-heading text-primary">Артём</span>
-        <span class="text-5xl text-primary">&</span>
-        <span class="text-5xl font-heading text-primary">Елена</span>
-      </div>
-      <p class="text-2xl md:text-3xl font-subheading text-primary mt-8">25 сентября 2025</p>
-      <p class="text-lg text-wood mt-2">Ресторан «Пятигорская дача», начало в 16:00</p>
-      <div class="mt-10 flex items-center justify-center gap-4 flex-wrap">
-        <a href="#rsvp" class="bg-primary hover:bg-wood text-white font-medium py-3 px-6 rounded-full transition focus:outline-none focus:ring-2 focus:ring-primary">Подтвердить участие</a>
-        <button id="addToCal" class="bg-white border border-primary text-primary hover:bg-secondary/30 font-medium py-3 px-6 rounded-full transition focus:outline-none focus:ring-2 focus:ring-primary">Добавить в календарь</button>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- PROGRAM -->
-  <section id="program" class="scroll-mt-24 py-16 px-4 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-heading text-center text-primary mb-12">Программа дня</h2>
-      <ol class="relative border-s-2 border-secondary max-w-3xl mx-auto space-y-10">
-        <li class="ms-6">
-          <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
-          <h3 class="font-subheading text-xl text-primary">Сбор гостей — 15:30</h3>
-          <p class="text-wood">Welcome-фуршет, размещение.</p>
-        </li>
-        <li class="ms-6">
-          <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
-          <h3 class="font-subheading text-xl text-primary">Церемония — 16:00</h3>
-          <p class="text-wood">Выездная регистрация в саду.</p>
-        </li>
-        <li class="ms-6">
-          <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
-          <h3 class="font-subheading text-xl text-primary">Банкет — 17:00</h3>
-          <p class="text-wood">Тосты, тёплые слова и вкусный ужин.</p>
-        </li>
-        <li class="ms-6">
-          <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
-          <h3 class="font-subheading text-xl text-primary">Танцы — 19:30</h3>
-          <p class="text-wood">DJ, любимые треки — заказывайте в форме.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- CALENDAR -->
-  <section id="calendar" class="scroll-mt-24 py-16 px-4 bg-white">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-4xl font-heading text-center text-primary mb-4">Календарь</h2>
-      <p class="text-center text-wood mb-10">Сентябрь 2025</p>
-      <div class="bg-light p-6 rounded-2xl shadow-lg max-w-2xl mx-auto">
-        <div class="grid grid-cols-7 gap-2 mb-3 text-primary font-medium text-center">
-          <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+  <main class="pt-24">
+    <!-- HERO -->
+    <section id="home" class="scroll-mt-24 min-h-[90vh] flex items-center pt-8 pb-16 px-4">
+      <div class="max-w-7xl mx-auto text-center">
+        <h1 class="text-4xl md:text-6xl font-heading text-primary">Приглашаем вас на нашу свадьбу</h1>
+        <div class="mt-8 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+          <span class="text-5xl font-heading text-primary">Артём</span>
+          <span class="text-5xl text-primary">&</span>
+          <span class="text-5xl font-heading text-primary">Елена</span>
         </div>
-        <div id="calendarGrid" class="grid grid-cols-7 gap-2"></div>
-        <div class="mt-6 text-center">
-          <span class="inline-flex items-center bg-white px-3 py-1 rounded-full shadow"><span class="w-3 h-3 bg-accent rounded-full mr-2"></span>День свадьбы</span>
+        <p class="text-2xl md:text-3xl font-subheading text-primary mt-8">25 сентября 2025</p>
+        <p class="text-lg text-wood mt-2">Ресторан «Пятигорская дача», начало в 16:00</p>
+        <div class="mt-10 flex items-center justify-center gap-4 flex-wrap">
+          <a href="#rsvp" class="bg-primary hover:bg-wood text-white font-medium py-3 px-6 rounded-full transition focus:outline-none focus:ring-2 focus:ring-primary">Подтвердить участие</a>
+          <button id="addToCal" class="bg-white border border-primary text-primary hover:bg-secondary/30 font-medium py-3 px-6 rounded-full transition focus:outline-none focus:ring-2 focus:ring-primary">Добавить в календарь</button>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="section-divider"></div>
+    <div class="section-divider"></div>
 
-  <!-- LOCATION -->
-  <section id="location" class="scroll-mt-24 py-16 px-4 bg-secondary/20">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-heading text-center text-primary mb-4">Локация</h2>
-      <p class="text-center text-wood mb-10">Ресторан «Пятигорская дача», ул. Ленина, 123, Пятигорск</p>
-      <div class="flex flex-col lg:flex-row items-center gap-10">
-        <div class="lg:w-1/2 w-full space-y-3 text-lg">
-          <p>Банкетный зал в стиле прованс, просторные окна на сад — идеальное место для фотографий.</p>
-          <p class="flex items-center"><i class="fa-solid fa-clock mr-3"></i>Начало церемонии в 16:00</p>
-          <div class="flex flex-wrap gap-3 pt-2">
-            <a target="_blank" rel="noopener" href="https://yandex.ru/maps/" class="px-4 py-2 rounded-full border border-primary text-primary hover:bg-secondary/30">Открыть в Яндекс.Картах</a>
-            <a target="_blank" rel="noopener" href="https://maps.google.com" class="px-4 py-2 rounded-full border border-primary text-primary hover:bg-secondary/30">Открыть в Google Maps</a>
+    <!-- PROGRAM -->
+    <section id="program" class="scroll-mt-24 py-16 px-4 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-heading text-center text-primary mb-12">Программа дня</h2>
+        <ol class="relative border-s-2 border-secondary max-w-3xl mx-auto space-y-10">
+          <li class="ms-6">
+            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
+            <h3 class="font-subheading text-xl text-primary">Сбор гостей — 15:30</h3>
+            <p class="text-wood">Welcome‑фуршет, размещение.</p>
+          </li>
+          <li class="ms-6">
+            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
+            <h3 class="font-subheading text-xl text-primary">Церемония — 16:00</h3>
+            <p class="text-wood">Выездная регистрация в саду.</p>
+          </li>
+          <li class="ms-6">
+            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
+            <h3 class="font-subheading text-xl text-primary">Банкет — 17:00</h3>
+            <p class="text-wood">Тосты, тёплые слова и вкусный ужин.</p>
+          </li>
+          <li class="ms-6">
+            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
+            <h3 class="font-subheading text-xl text-primary">Танцы — 19:30</h3>
+            <p class="text-wood">DJ, любимые треки — заказывайте в форме.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CALENDAR -->
+    <section id="calendar" class="scroll-mt-24 py-16 px-4 bg-white">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl font-heading text-center text-primary mb-4">Календарь</h2>
+        <p class="text-center text-wood mb-10">Сентябрь 2025</p>
+        <div class="bg-light p-6 rounded-2xl shadow-lg max-w-2xl mx-auto">
+          <div class="grid grid-cols-7 gap-2 mb-3 text-primary font-medium text-center">
+            <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+          </div>
+          <div id="calendarGrid" class="grid grid-cols-7 gap-2"></div>
+          <div class="mt-6 text-center">
+            <span class="inline-flex items-center bg-white px-3 py-1 rounded-full shadow"><span class="w-3 h-3 bg-accent rounded-full mr-2"></span>День свадьбы</span>
           </div>
         </div>
-        <div class="lg:w-1/2 w-full rounded-2xl overflow-hidden shadow-lg">
-          <iframe title="Карта: Ресторан Пятигорская дача" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2306.759334026994!2d43.0594723158395!3d44.04861197910855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x405539e3b8d9d0d1%3A0x400f42c5b0d0d0d0!2z0JjQstCw0L0g0JDQvdC00YPRgNC-LCDQnNC-0YHQutCy0LAsINCg0L7RgdGC0LDQvQ!5e0!3m2!1sru!2sru!4v1650000000000!5m2!1sru!2sru" width="100%" height="380" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- LOCATION -->
+    <section id="location" class="scroll-mt-24 py-16 px-4 bg-secondary/20">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-heading text-center text-primary mb-4">Локация</h2>
+        <p class="text-center text-wood mb-10">Ресторан «Пятигорская дача», ул. Ленина, 123, Пятигорск</p>
+        <div class="flex flex-col lg:flex-row items-center gap-10">
+          <div class="lg:w-1/2 w-full space-y-3 text-lg">
+            <p>Банкетный зал в стиле прованс, просторные окна на сад — идеальное место для фотографий.</p>
+            <p class="flex items-center"><i class="fa-solid fa-clock mr-3"></i>Начало церемонии в 16:00</p>
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a target="_blank" rel="noopener" href="https://yandex.ru/maps/" class="px-4 py-2 rounded-full border border-primary text-primary hover:bg-secondary/30">Открыть в Яндекс.Картах</a>
+              <a target="_blank" rel="noopener" href="https://maps.google.com" class="px-4 py-2 rounded-full border border-primary text-primary hover:bg-secondary/30">Открыть в Google Maps</a>
+            </div>
+          </div>
+          <div class="lg:w-1/2 w-full rounded-2xl overflow-hidden shadow-lg">
+            <iframe title="Карта: Ресторан Пятигорская дача" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2306.759334026994!2d43.0594723158395!3d44.04861197910855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x405539e3b8d9d0d1%3A0x400f42c5b0d0d0d0!2z0JjQstCw0L0g0JDQvdC00YPRgNC-LCDQnNC-0YHQutCy0LAsINCg0L7RgdGC0LDQvQ!5e0!3m2!1sru!2sru!4v1650000000000!5m2!1sru!2sru" width="100%" height="380" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="section-divider"></div>
+    <div class="section-divider"></div>
 
-  <!-- DRESS CODE -->
-  <section id="dresscode" class="scroll-mt-24 py-16 px-4 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-heading text-center text-primary mb-4">Дресс-код</h2>
-      <p class="text-center text-wood mb-10">С радостью увидим вас в этих оттенках</p>
-      <div class="flex flex-wrap justify-center gap-8 mb-8">
-        <div class="w-28 h-28 rounded-full shadow" style="background:#E3DABF" title="Песочный"></div>
-        <div class="w-28 h-28 rounded-full shadow" style="background:#D7BABD" title="Розовый дымка"></div>
-        <div class="w-28 h-28 rounded-full shadow" style="background:#C6D3B3" title="Оливковый"></div>
-        <div class="w-28 h-28 rounded-full shadow" style="background:#523211" title="Шоколад"></div>
+    <!-- DRESS CODE -->
+    <section id="dresscode" class="scroll-mt-24 py-16 px-4 bg-white">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-heading text-center text-primary mb-4">Дресс‑код</h2>
+        <p class="text-center text-wood mb-10">С радостью увидим вас в этих оттенках</p>
+        <div class="flex flex-wrap justify-center gap-8 mb-8">
+          <div class="w-28 h-28 rounded-full shadow" style="background:#E3DABF" title="Песочный"></div>
+          <div class="w-28 h-28 rounded-full shadow" style="background:#D7BABD" title="Розовый дымка"></div>
+          <div class="w-28 h-28 rounded-full shadow" style="background:#C6D3B3" title="Оливковый"></div>
+          <div class="w-28 h-28 rounded-full shadow" style="background:#523211" title="Шоколад"></div>
+        </div>
+        <ul class="max-w-3xl mx-auto space-y-3 text-lg">
+          <li class="flex items-start"><i class="fa-solid fa-check text-accent mt-1 mr-3"></i>Элегантные платья в пастельных тонах</li>
+          <li class="flex items-start"><i class="fa-solid fa-check text-accent mt-1 mr-3"></i>Костюмы в бежевых, коричневых или оливковых оттенках</li>
+          <li class="flex items-start"><i class="fa-solid fa-check text-accent mt-1 mr-3"></i>Избегайте белого цвета (кроме невесты)</li>
+          <li class="flex items-start"><i class="fa-solid fa-check text-accent mt-1 mr-3"></i>Украшения в золотых/бронзовых оттенках</li>
+        </ul>
       </div>
-      <ul class="max-w-3xl mx-auto space-y-3 text-lg">
-        <li class="flex items-start"><i class="fa-solid fa-check text-accent mt-1 mr-3"></i>Элегантные платья в пастельных тонах</li>
-        <li class="flex items-start"><i class="fa-solid fa-check text-accent mt-1 mr-3"></i>Костюмы в бежевых, коричневых или оливковых оттенках</li>
-        <li class="flex items-start"><i class="fa-solid fa-check text-accent mt-1 mr-3"></i>Избегайте белого цвета (кроме невесты)</li>
-        <li class="flex items-start"><i class="fa-solid fa-check text-accent mt-1 mr-3"></i>Украшения в золотых/бронзовых оттенках</li>
-      </ul>
-    </div>
-  </section>
+    </section>
 
-  <div class="section-divider"></div>
+    <div class="section-divider"></div>
 
-  <!-- RSVP -->
-  <section id="rsvp" class="scroll-mt-24 py-16 px-4 bg-secondary/10">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-4xl font-heading text-center text-primary mb-8">RSVP</h2>
-      <p class="text-center text-wood mb-8">Пожалуйста, подтвердите участие до 10 сентября</p>
+    <!-- RSVP -->
+    <section id="rsvp" class="scroll-mt-24 py-16 px-4 bg-secondary/10">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-4xl font-heading text-center text-primary mb-8">RSVP</h2>
+        <p class="text-center text-wood mb-8">Пожалуйста, подтвердите участие до 10 сентября</p>
+        <form action="https://formspree.io/f/xvgqernv" method="POST" class="grid gap-4 max-w-xl mx-auto bg-white p-6 rounded-2xl shadow">
+          <input name="name" required placeholder="Ваше имя" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input name="contacts" type="text" placeholder="Контакты (телефон / WhatsApp / Telegram) — можно оставить пустым" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary" />
+          <select name="guests" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+            <option value="1">Я приду один/одна</option>
+            <option value="2">Мы будем вдвоём</option>
+            <option value="3+">Нас будет больше</option>
+          </select>
+          <textarea name="notes" placeholder="Пожелания/аллергии/трек для ди‑джея" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
 
-      <form action="https://formspree.io/f/xvgqernv" method="POST" class="grid gap-4 max-w-xl mx-auto bg-white p-6 rounded-2xl shadow">
-        <input name="name" required placeholder="Ваше имя" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary" />
-        <input name="email" type="email" required placeholder="Email для подтверждения" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary" />
-        <input name="phone" type="tel" pattern="\\+?[0-9\\s\\-()]{7,}" placeholder="Телефон" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary" />
-        <select name="guests" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary">
-          <option value="1">Я приду один/одна</option>
-          <option value="2">Мы будем вдвоём</option>
-          <option value="3+">Нас будет больше</option>
-        </select>
-        <textarea name="notes" placeholder="Пожелания/аллергии/трек для ди-джея" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+          <!-- Formspree helpers -->
+          <input type="hidden" name="_subject" value="RSVP со страницы свадьбы">
+          <input type="hidden" name="_redirect" value="#rsvp?success=1">
+          <input type="text" name="_gotcha" style="display:none">
+          <input type="hidden" name="source" value="wedding-site">
 
-        <!-- Formspree helpers -->
-        <input type="hidden" name="_subject" value="RSVP со страницы свадьбы">
-        <input type="hidden" name="_redirect" value="#rsvp?success=1">
-        <input type="text" name="_gotcha" style="display:none">
-        <input type="hidden" name="source" value="wedding-site">
-
-        <button class="bg-primary text-white py-3 rounded-lg hover:bg-wood focus:outline-none focus:ring-2 focus:ring-primary">Отправить</button>
-      </form>
-
-      <div class="max-w-xl mx-auto mt-6 text-sm text-gray-600 text-center">Хотите любимый трек на танцах? Напишите его в поле «Пожелания» 😊</div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- TIMER -->
-  <section id="timer" class="scroll-mt-24 py-16 px-4 bg-wood/10">
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-4xl font-heading text-primary mb-6">Обратный отсчёт</h2>
-      <p class="text-wood mb-10">До нашего дня осталось:</p>
-      <div class="flex flex-wrap justify-center gap-6 md:gap-10">
-        <div class="bg-white rounded-2xl shadow p-6 w-40"><div id="days" class="text-5xl font-subheading text-primary">00</div><div class="text-wood mt-2">Дней</div></div>
-        <div class="bg-white rounded-2xl shadow p-6 w-40"><div id="hours" class="text-5xl font-subheading text-primary">00</div><div class="text-wood mt-2">Часов</div></div>
-        <div class="bg-white rounded-2xl shadow p-6 w-40"><div id="minutes" class="text-5xl font-subheading text-primary">00</div><div class="text-wood mt-2">Минут</div></div>
-        <div class="bg-white rounded-2xl shadow p-6 w-40"><div id="seconds" class="text-5xl font-subheading text-primary">00</div><div class="text-wood mt-2">Секунд</div></div>
+          <button class="bg-primary text-white py-3 rounded-lg hover:bg-wood focus:outline-none focus:ring-2 focus:ring-primary">Отправить</button>
+        </form>
+        <div class="max-w-xl mx-auto mt-6 text-sm text-gray-600 text-center">Можно указать номер WhatsApp/телефон, ник Telegram или ничего не указывать.</div>
       </div>
-      <div class="mt-10">
-        <a href="#home" class="inline-block bg-primary hover:bg-wood text-white font-medium py-3 px-8 rounded-full transition focus:outline-none focus:ring-2 focus:ring-primary">Вернуться на главную</a>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- TIMER -->
+    <section id="timer" class="scroll-mt-24 py-16 px-4 bg-wood/10">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-4xl font-heading text-primary mb-6">Обратный отсчёт</h2>
+        <p class="text-wood mb-10">До нашего дня осталось:</p>
+        <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+          <div class="bg-white rounded-2xl shadow p-6 w-40"><div id="days" class="text-5xl font-subheading text-primary">00</div><div class="text-wood mt-2">Дней</div></div>
+          <div class="bg-white rounded-2xl shadow p-6 w-40"><div id="hours" class="text-5xl font-subheading text-primary">00</div><div class="text-wood mt-2">Часов</div></div>
+          <div class="bg-white rounded-2xl shadow p-6 w-40"><div id="minutes" class="text-5xl font-subheading text-primary">00</div><div class="text-wood mt-2">Минут</div></div>
+          <div class="bg-white rounded-2xl shadow p-6 w-40"><div id="seconds" class="text-5xl font-subheading text-primary">00</div><div class="text-wood mt-2">Секунд</div></div>
+        </div>
+        <div class="mt-10">
+          <a href="#home" class="inline-block bg-primary hover:bg-wood text-white font-medium py-3 px-8 rounded-full transition focus:outline-none focus:ring-2 focus:ring-primary">Вернуться на главную</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- BACK TO TOP -->
   <button id="toTop" class="fixed bottom-6 right-6 hidden items-center gap-2 bg-primary text-white px-4 py-2 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Наверх">
@@ -319,6 +319,7 @@
       const first = new Date(year, monthIndex, 1);
       const last = new Date(year, monthIndex+1, 0);
       const grid = document.getElementById('calendarGrid');
+      if(!grid) return;
       grid.innerHTML='';
 
       const startWeekday = (first.getDay()+6)%7; // 0-пн, ... 6-вс
@@ -329,12 +330,12 @@
         el.className='heart-wrap text-center py-3 rounded-md bg-white';
 
         if(d===25){
-          el.classList.add('bg-accent','text-white','font-bold','relative');
+          el.classList.add('relative');
           el.title='День свадьбы';
           el.innerHTML = `
-            <span class="relative z-10">${d}</span>
+            <span class="heart-number">${d}</span>
             <svg class="heart-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 21s-6.716-4.088-9.193-7.33C1.05 11.58 1.39 8.72 3.34 6.98A5.02 5.02 0 0 1 12 7.2a5.02 5.02 0 0 1 8.66-.22c1.95 1.74 2.29 4.6.53 6.69C18.716 16.912 12 21 12 21Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M12 21s-6.716-4.088-9.193-7.33C1.05 11.58 1.39 8.72 3.34 6.98A5.02 5.02 0 0 1 12 7.2a5.02 5.02 0 0 1 8.66-.22c1.95 1.74 2.29 4.6.53 6.69C18.716 16.912 12 21 12 21Z" stroke="currentColor" stroke-width="2" fill="none"/>
             </svg>`;
         } else {
           el.textContent=d;
