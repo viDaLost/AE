@@ -42,6 +42,7 @@
     }
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
   <style>
     html{scroll-behavior:smooth}
     body{background:#f9f7f1}
@@ -51,6 +52,11 @@
     .active-link::after{width:100%}
     .section-divider{height:2px;background:linear-gradient(90deg,transparent,#C6D3B3,transparent)}
     @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.nav-link::after{transition:none}}
+
+    /* Heart pulse for calendar (25th) */
+    .heart-wrap { position: relative; }
+    .heart-svg { position: absolute; inset: 0; margin: auto; width: 44px; height: 44px; pointer-events: none; animation: heartbeat 1.6s ease-in-out infinite; }
+    @keyframes heartbeat { 0% { transform: scale(0.9); opacity: .7; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(0.9); opacity: .7; } }
   </style>
 
   <!-- Schema.org Event -->
@@ -87,7 +93,7 @@
         <a class="nav-link text-primary font-medium" href="#program">Программа</a>
         <a class="nav-link text-primary font-medium" href="#calendar">Календарь</a>
         <a class="nav-link text-primary font-medium" href="#location">Локация</a>
-        <a class="nav-link text-primary font-medium" href="#dresscode">Дресс‑код</a>
+        <a class="nav-link text-primary font-medium" href="#dresscode">Дресс-код</a>
         <a class="nav-link text-primary font-medium" href="#rsvp">RSVP</a>
         <a class="nav-link text-primary font-medium" href="#timer">Таймер</a>
       </div>
@@ -122,7 +128,7 @@
         <li class="ms-6">
           <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
           <h3 class="font-subheading text-xl text-primary">Сбор гостей — 15:30</h3>
-          <p class="text-wood">Welcome‑фуршет, размещение.</p>
+          <p class="text-wood">Welcome-фуршет, размещение.</p>
         </li>
         <li class="ms-6">
           <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
@@ -137,7 +143,7 @@
         <li class="ms-6">
           <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-accent"></span>
           <h3 class="font-subheading text-xl text-primary">Танцы — 19:30</h3>
-          <p class="text-wood">DJ, любимые треки — заказывайте ниже.</p>
+          <p class="text-wood">DJ, любимые треки — заказывайте в форме.</p>
         </li>
       </ol>
     </div>
@@ -190,7 +196,7 @@
   <!-- DRESS CODE -->
   <section id="dresscode" class="scroll-mt-24 py-16 px-4 bg-white">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-heading text-center text-primary mb-4">Дресс‑код</h2>
+      <h2 class="text-4xl font-heading text-center text-primary mb-4">Дресс-код</h2>
       <p class="text-center text-wood mb-10">С радостью увидим вас в этих оттенках</p>
       <div class="flex flex-wrap justify-center gap-8 mb-8">
         <div class="w-28 h-28 rounded-full shadow" style="background:#E3DABF" title="Песочный"></div>
@@ -214,16 +220,24 @@
     <div class="max-w-5xl mx-auto">
       <h2 class="text-4xl font-heading text-center text-primary mb-8">RSVP</h2>
       <p class="text-center text-wood mb-8">Пожалуйста, подтвердите участие до 10 сентября</p>
-      <form action="https://formspree.io/f/XXXXYYYY" method="POST" class="grid gap-4 max-w-xl mx-auto bg-white p-6 rounded-2xl shadow">
+
+      <form action="https://formspree.io/f/xvgqernv" method="POST" class="grid gap-4 max-w-xl mx-auto bg-white p-6 rounded-2xl shadow">
         <input name="name" required placeholder="Ваше имя" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary" />
-        <input name="phone" required placeholder="Телефон" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary" />
+        <input name="email" type="email" required placeholder="Email для подтверждения" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary" />
+        <input name="phone" type="tel" pattern="\\+?[0-9\\s\\-()]{7,}" placeholder="Телефон" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary" />
         <select name="guests" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary">
           <option value="1">Я приду один/одна</option>
           <option value="2">Мы будем вдвоём</option>
           <option value="3+">Нас будет больше</option>
         </select>
-        <textarea name="notes" placeholder="Пожелания/аллергии" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
-        <input type="hidden" name="source" value="wedding-site" />
+        <textarea name="notes" placeholder="Пожелания/аллергии/трек для ди-джея" class="border p-3 rounded focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+
+        <!-- Formspree helpers -->
+        <input type="hidden" name="_subject" value="RSVP со страницы свадьбы">
+        <input type="hidden" name="_redirect" value="#rsvp?success=1">
+        <input type="text" name="_gotcha" style="display:none">
+        <input type="hidden" name="source" value="wedding-site">
+
         <button class="bg-primary text-white py-3 rounded-lg hover:bg-wood focus:outline-none focus:ring-2 focus:ring-primary">Отправить</button>
       </form>
 
@@ -266,10 +280,73 @@
 
   <!-- SCRIPTS -->
   <script>
-    let timerInterval;
+    // ===== Global Settings =====
+    const EVENT_LOCAL_ISO = '2025-09-25T16:00:00+03:00';
+    const EVENT_SUMMARY = 'Свадьба Артёма и Елены';
+    const EVENT_LOCATION = 'Ресторан «Пятигорская дача», ул. Ленина, 123, Пятигорск';
+    const EVENT_DESC = 'Ждём вас на нашем празднике!';
 
+    // ===== Mobile menu toggle =====
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+    navToggle?.addEventListener('click', () => {
+      const hidden = navMenu.classList.toggle('hidden');
+      navToggle.setAttribute('aria-expanded', String(!hidden));
+    });
+
+    // Active link highlighting
+    const links=[...document.querySelectorAll('#navMenu a[href^="#"]')];
+    const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const obs=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          links.forEach(l=>l.classList.remove('active-link'));
+          const link=links.find(l=>'#'+e.target.id===l.getAttribute('href'));
+          link?.classList.add('active-link');
+        }
+      });
+    }, {rootMargin:'-40% 0px -55% 0px', threshold:0.01});
+    sections.forEach(s=>obs.observe(s));
+
+    // Back to top
+    const toTop=document.getElementById('toTop');
+    window.addEventListener('scroll',()=>{ if(window.scrollY>600) toTop.classList.remove('hidden'); else toTop.classList.add('hidden'); });
+    toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+    // ===== Calendar render (September 2025 with pulsing heart on 25) =====
+    function renderCalendar(){
+      const year=2025, monthIndex=8; // сентябрь
+      const first = new Date(year, monthIndex, 1);
+      const last = new Date(year, monthIndex+1, 0);
+      const grid = document.getElementById('calendarGrid');
+      grid.innerHTML='';
+
+      const startWeekday = (first.getDay()+6)%7; // 0-пн, ... 6-вс
+      for(let i=0;i<startWeekday;i++){ grid.appendChild(document.createElement('div')); }
+
+      for(let d=1; d<=last.getDate(); d++){
+        const el = document.createElement('div');
+        el.className='heart-wrap text-center py-3 rounded-md bg-white';
+
+        if(d===25){
+          el.classList.add('bg-accent','text-white','font-bold','relative');
+          el.title='День свадьбы';
+          el.innerHTML = `
+            <span class="relative z-10">${d}</span>
+            <svg class="heart-svg" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 21s-6.716-4.088-9.193-7.33C1.05 11.58 1.39 8.72 3.34 6.98A5.02 5.02 0 0 1 12 7.2a5.02 5.02 0 0 1 8.66-.22c1.95 1.74 2.29 4.6.53 6.69C18.716 16.912 12 21 12 21Z" stroke="currentColor" stroke-width="1.8"/>
+            </svg>`;
+        } else {
+          el.textContent=d;
+        }
+        grid.appendChild(el);
+      }
+    }
+
+    // ===== Countdown timer =====
+    let timerInterval;
     function updateTimer(){
-      const weddingDate = new Date('2025-09-25T16:00:00+03:00'); // Укажите свою зону, если нужна другая
+      const weddingDate = new Date(EVENT_LOCAL_ISO);
       const now = new Date();
       const dist = weddingDate - now;
       const clamp = (n)=>Math.max(0,n);
@@ -285,68 +362,37 @@
       if(dist<=0){ clearInterval(timerInterval); }
     }
 
-    function renderCalendar(){
-      const year=2025, monthIndex=8; // сентябрь (0-based)
-      const first = new Date(year, monthIndex, 1);
-      const last = new Date(year, monthIndex+1, 0);
-      const grid = document.getElementById('calendarGrid');
-      grid.innerHTML='';
-      const startWeekday = (first.getDay()+6)%7; // 0-пн, ... 6-вс
-      for(let i=0;i<startWeekday;i++){ grid.appendChild(document.createElement('div')); }
-      for(let d=1; d<=last.getDate(); d++){
-        const el = document.createElement('div');
-        el.className='text-center py-3 rounded-md bg-white';
-        el.textContent=d;
-        if(d===25){ el.classList.add('bg-accent','text-white','font-bold','relative'); el.title='День свадьбы'; }
-        grid.appendChild(el);
-      }
-    }
-
-    function addToCalendar(){
-      const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:20250925T130000Z\nDTEND:20250925T190000Z\nSUMMARY:Свадьба Артёма и Елены\nLOCATION:Ресторан «Пятигорская дача», ул. Ленина, 123, Пятигорск\nDESCRIPTION:Ждём вас на нашем празднике!\nEND:VEVENT\nEND:VCALENDAR`;
+    // ===== Add to Calendar (ICS) =====
+    document.getElementById('addToCal')?.addEventListener('click', () => {
+      const start = new Date(EVENT_LOCAL_ISO);
+      const end = new Date(start.getTime() + 6*60*60*1000); // +6 часов
+      const pad=(n)=>String(n).padStart(2,'0');
+      const toICS=(d)=> d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+pad(d.getUTCSeconds())+'Z';
+      const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Wedding//Invite//RU\nBEGIN:VEVENT\nDTSTART:${toICS(start)}\nDTEND:${toICS(end)}\nSUMMARY:${EVENT_SUMMARY}\nLOCATION:${EVENT_LOCATION}\nDESCRIPTION:${EVENT_DESC}\nEND:VEVENT\nEND:VCALENDAR`;
       const blob = new Blob([ics], {type:'text/calendar;charset=utf-8'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a'); a.href=url; a.download='wedding.ics'; a.click();
       URL.revokeObjectURL(url);
+    });
+
+    // ===== Success banner after Formspree redirect =====
+    function showSuccessIfAny(){
+      if (location.hash.includes('success=1')) {
+        const note = document.createElement('div');
+        note.className = 'max-w-xl mx-auto my-4 p-4 rounded bg-green-100 text-green-800 text-center';
+        note.textContent = 'Спасибо! Ваша заявка отправлена.';
+        const rsvp = document.getElementById('rsvp');
+        if (rsvp) rsvp.prepend(note);
+      }
     }
 
-    function setupNav(){
-      const btn=document.getElementById('navToggle');
-      const menu=document.getElementById('navMenu');
-      btn?.addEventListener('click',()=>{
-        const hidden=menu.classList.toggle('hidden');
-        btn.setAttribute('aria-expanded', String(!hidden));
-      });
-
-      // Active link highlight by section
-      const links=[...menu.querySelectorAll('a[href^="#"]')];
-      const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
-      const obs=new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){
-            links.forEach(l=>l.classList.remove('active-link'));
-            const link=links.find(l=>l.getAttribute('href')==='#'+e.target.id);
-            link?.classList.add('active-link');
-          }
-        });
-      }, {rootMargin:'-40% 0px -55% 0px', threshold:0});
-      sections.forEach(s=>obs.observe(s));
-
-      // Back to top
-      const toTop=document.getElementById('toTop');
-      window.addEventListener('scroll',()=>{
-        if(window.scrollY>600) toTop.classList.remove('hidden'); else toTop.classList.add('hidden');
-      });
-      toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-    }
-
+    // Init
     document.addEventListener('DOMContentLoaded',()=>{
       document.getElementById('year').textContent=new Date().getFullYear();
       renderCalendar();
       updateTimer();
       timerInterval=setInterval(updateTimer,1000);
-      document.getElementById('addToCal').addEventListener('click', addToCalendar);
-      setupNav();
+      showSuccessIfAny();
     });
   </script>
 </body>
