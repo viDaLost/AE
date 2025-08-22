@@ -6,7 +6,7 @@
   <title>Свадьба Артёма и Елены — 25 сентября 2025</title>
 
   <!-- SEO & Sharing -->
-  <meta name="description" content="Свадьба Артёма и Елены — 25 сентября 2025, ресторан «Пятигорская дача». Ждём вас на нашем празднике!" />
+  <meta name="description" content="Свадьба Артёма и Елены — 25 сентября 2025, Дача банкетный зал (Пятигорск, ул. Широкая). Ждём вас на нашем празднике!" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Свадьба Артёма и Елены — 25.09.2025" />
   <meta property="og:description" content="Тёплый семейный праздник, начало в 16:00." />
@@ -16,7 +16,10 @@
   <link rel="canonical" href="https://example.com/" />
   <link rel="icon" href="/favicon.ico" />
 
-  <!- Fonts & Tailwind -->
+  <!-- Prevent browser from auto-scrolling to a hash on load -->
+  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
+
+  <!-- Fonts & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
@@ -48,25 +51,16 @@
 
   <style>
     /* ЕДИНЫЙ ФОН (работает на мобильных через псевдо-элемент) */
-    body {
-      position: relative;
-      min-height: 100vh;
-    }
+    body { position: relative; min-height: 100vh; }
     body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
+      content: ""; position: fixed; inset: 0; z-index: -2;
       background: url('./background.jpg') center / cover no-repeat;
     }
     /* Мягкая вуаль для читабельности текста */
     body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
+      content: ""; position: fixed; inset: 0;
       background: rgba(255, 255, 255, 0.88);
-      pointer-events: none;
-      z-index: -1;
+      pointer-events: none; z-index: -1;
     }
 
     html{scroll-behavior:smooth}
@@ -84,6 +78,12 @@
     .heart-number { position: relative; z-index: 10; font-weight: 700; }
     .heart-svg { position: absolute; inset: 0; margin: auto; width: 56px; height: 56px; pointer-events: none; animation: heartbeat 1.6s ease-in-out infinite; z-index: 20; color: #D7BABD; }
     @keyframes heartbeat { 0% { transform: scale(0.9); opacity: .7; } 50% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(0.9); opacity: .7; } }
+
+    /* Кнопка "Подтвердить участие" — без изменения цвета на hover/active */
+    .btn-rsvp { background-color:#523211; color:#fff; }
+    .btn-rsvp:hover,
+    .btn-rsvp:active,
+    .btn-rsvp:focus { background-color:#523211; color:#fff; }
   </style>
 
   <!-- Schema.org Event -->
@@ -97,8 +97,8 @@
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "location": {
       "@type": "Place",
-      "name": "Ресторан «Пятигорская дача»",
-      "address": "ул. Ленина, 123, Пятигорск"
+      "name": "Дача банкетный зал",
+      "address": "Ставропольский край, г. Пятигорск, ул. Широкая"
     },
     "image": ["https://example.com/og-image.jpg"],
     "description": "Тёплый семейный праздник в стиле прованс.",
@@ -138,10 +138,10 @@
           <span class="text-5xl font-heading text-primary">Елена</span>
         </div>
         <p class="text-2xl md:text-3xl font-subheading text-primary mt-8">25 сентября 2025</p>
-        <p class="text-lg text-wood mt-2">Ресторан «Пятигорская дача», начало в 16:00</p>
+        <p class="text-lg text-wood mt-2">Дача банкетный зал — Пятигорск, ул. Широкая. Начало в 16:00</p>
         <div class="mt-10 flex items-center justify-center gap-4 flex-wrap">
-          <a href="#rsvp" class="bg-primary hover:bg-oliveDark text-white font-medium py-3 px-6 rounded-full transition focus:outline-none focus:ring-2 focus:ring-olive">Подтвердить участие</a>
-          <button id="addToCal" class="bg-white border border-olive text-olive hover:bg-oliveLight/30 font-medium py-3 px-6 rounded-full transition focus:outline-none focus:ring-2 focus:ring-olive">Добавить в календарь</button>
+          <a href="#rsvp" class="btn-rsvp font-medium py-3 px-6 rounded-full transition focus:outline-none focus:ring-2 focus:ring-olive">Подтвердить участие</a>
+          <button id="addToCal" class="bg-white border border-olive text-olive font-medium py-3 px-6 rounded-full transition focus:outline-none focus:ring-2 focus:ring-olive">Добавить в календарь</button>
         </div>
       </div>
     </section>
@@ -161,12 +161,12 @@
           <li class="ms-6">
             <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-olive"></span>
             <h3 class="font-subheading text-xl text-primary">Церемония — 16:00</h3>
-            <p class="text-oliveDark">Выездная регистрация в саду.</p>
+            <p class="text-oliveDark">Выездная регистрация.</p>
           </li>
           <li class="ms-6">
             <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-olive"></span>
             <h3 class="font-subheading text-xl text-primary">Банкет — 17:00</h3>
-            <p class="text-oliveDark">Тосты, тёплые слова и вкусный ужин.</p>
+            <p class="text-oliveDark">Тосты, тёплые слова и ужин.</p>
           </li>
           <li class="ms-6">
             <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-olive"></span>
@@ -202,18 +202,21 @@
     <section id="location" class="scroll-mt-24 py-16 px-4 bg-oliveLight/20 rounded-2xl mx-2">
       <div class="max-w-6xl mx-auto">
         <h2 class="text-4xl font-heading text-center text-primary mb-4">Локация</h2>
-        <p class="text-center text-oliveDark mb-10">Ресторан «Пятигорская дача», ул. Ленина, 123, Пятигорск</p>
+        <p class="text-center text-oliveDark mb-10">
+          Дача банкетный зал — Ставропольский край, г. Пятигорск, ул. Широкая
+        </p>
         <div class="flex flex-col lg:flex-row items-center gap-10">
           <div class="lg:w-1/2 w-full space-y-3 text-lg">
-            <p>Банкетный зал в стиле прованс, просторные окна на сад — идеальное место для фотографий.</p>
+            <p>Уютная площадка для тёплого семейного праздника.</p>
             <p class="flex items-center text-oliveDark"><i class="fa-solid fa-clock mr-3"></i>Начало церемонии в 16:00</p>
             <div class="flex flex-wrap gap-3 pt-2">
-              <a target="_blank" rel="noopener" href="https://yandex.ru/maps/" class="px-4 py-2 rounded-full border border-olive text-olive hover:bg-oliveLight/30">Открыть в Яндекс.Картах</a>
-              <a target="_blank" rel="noopener" href="https://maps.google.com" class="px-4 py-2 rounded-full border border-olive text-olive hover:bg-oliveLight/30">Открыть в Google Maps</a>
+              <a target="_blank" rel="noopener" href="https://yandex.ru/maps/-/CHxHeQOl" class="px-4 py-2 rounded-full border border-olive text-olive hover:bg-oliveLight/30">Открыть в Яндекс.Картах</a>
+              <a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=%D0%94%D0%B0%D1%87%D0%B0%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B7%D0%B0%D0%BB%2C%20%D0%9F%D1%8F%D1%82%D0%B8%D0%B3%D0%BE%D1%80%D1%81%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A8%D0%B8%D1%80%D0%BE%D0%BA%D0%B0%D1%8F" class="px-4 py-2 rounded-full border border-olive text-olive hover:bg-oliveLight/30">Открыть в Google Maps</a>
             </div>
           </div>
           <div class="lg:w-1/2 w-full rounded-2xl overflow-hidden shadow-lg">
-            <iframe title="Карта: Ресторан Пятигорская дача" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2306.759334026994!2d43.0594723158395!3d44.04861197910855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x405539e3b8d9d0d1%3A0x400f42c5b0d0d0d0!2z0JjQstCw0L0g0JDQvdC00YPRgNC-LCDQnNC-0YHQutCy0LAsINCg0L7RgdGC0LDQvQ!5e0!3m2!1sru!2sru!4v1650000000000!5m2!1sru!2sru" width="100%" height="380" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <!-- Встраиваемая карта Google по поисковому запросу адреса -->
+            <iframe title="Карта: Дача банкетный зал" src="https://www.google.com/maps?q=%D0%94%D0%B0%D1%87%D0%B0%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B7%D0%B0%D0%BB%2C%20%D0%9F%D1%8F%D1%82%D0%B8%D0%B3%D0%BE%D1%80%D1%81%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A8%D0%B8%D1%80%D0%BE%D0%BA%D0%B0%D1%8F&output=embed" width="100%" height="380" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -227,14 +230,13 @@
         <h2 class="text-4xl font-heading text-center text-primary mb-4">Дресс-код</h2>
         <p class="text-center text-oliveDark mb-10">С радостью увидим вас в этих оттенках</p>
         <div class="flex flex-wrap justify-center gap-8 mb-8">
-          <!-- заменённый цвет: был E1DAC2/E3DABF, теперь D8CBBB -->
           <div class="w-28 h-28 rounded-full shadow" style="background:#D8CBBB" title="Песочный тёплый"></div>
           <div class="w-28 h-28 rounded-full shadow" style="background:#D7BABD" title="Розовый дымка"></div>
           <div class="w-28 h-28 rounded-full shadow" style="background:#C6D3B3" title="Оливковый светлый"></div>
           <div class="w-28 h-28 rounded-full shadow" style="background:#523211" title="Шоколад"></div>
         </div>
         <ul class="max-w-3xl mx-auto space-y-3 text-lg">
-          <li class="flex items-start"><i class="fa-solid fa-check text-olive mt-1 mr-3"></i>Элегантные платья в пастельных тонах</li>
+          <li class="flex items-start"><i class="fa-solid fa-check text-olive mt-1 mr-3"></i>Элегантные платья в пастельных/песочных тонах</li>
           <li class="flex items-start"><i class="fa-solid fa-check text-olive mt-1 mr-3"></i>Костюмы в бежевых и оливковых оттенках</li>
           <li class="flex items-start"><i class="fa-solid fa-check text-olive mt-1 mr-3"></i>Избегайте белого цвета (кроме невесты)</li>
           <li class="flex items-start"><i class="fa-solid fa-check text-olive mt-1 mr-3"></i>Украшения в тёплых металлах</li>
@@ -310,7 +312,7 @@
     // ===== Global Settings =====
     const EVENT_LOCAL_ISO = '2025-09-25T16:00:00+03:00';
     const EVENT_SUMMARY = 'Свадьба Артёма и Елены';
-    const EVENT_LOCATION = 'Ресторан «Пятигорская дача», ул. Ленина, 123, Пятигорск';
+    const EVENT_LOCATION = 'Дача банкетный зал, Ставропольский край, г. Пятигорск, ул. Широкая';
     const EVENT_DESC = 'Ждём вас на нашем празднике!';
 
     // ===== Mobile menu toggle =====
@@ -396,21 +398,36 @@
       const end = new Date(start.getTime() + 6*60*60*1000); // +6 часов
       const pad=(n)=>String(n).padStart(2,'0');
       const toICS=(d)=> d.getUTCFullYear()+pad(d.getUTCMonth()+1)+pad(d.getUTCDate())+'T'+pad(d.getUTCHours())+pad(d.getUTCMinutes())+pad(d.getUTCSeconds())+'Z';
-      const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Wedding//Invite//RU\nBEGIN:VEVENT\nDTSTART:${toICS(start)}\nDTEND:${toICS(end)}\nSUMMARY:${EVENT_SUMMARY}\nLOCATION:${EVENT_LOCATION}\nDESCRIPTION:${EVENT_DESC}\nEND:VEVENT\nEND:VCALENDAR`;
+      const ics = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Wedding//Invite//RU
+BEGIN:VEVENT
+DTSTART:${toICS(start)}
+DTEND:${toICS(end)}
+SUMMARY:${EVENT_SUMMARY}
+LOCATION:${EVENT_LOCATION}
+DESCRIPTION:${EVENT_DESC}
+END:VEVENT
+END:VCALENDAR`;
       const blob = new Blob([ics], {type:'text/calendar;charset=utf-8'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a'); a.href=url; a.download='wedding.ics'; a.click();
       URL.revokeObjectURL(url);
     });
 
-    // ===== Success banner after Formspree redirect =====
+    // ===== Success banner after Formspree redirect (без автоскролла к #rsvp) =====
     function showSuccessIfAny(){
-      if (location.hash.includes('success=1')) {
+      const hadHash = location.hash;
+      if (hadHash && (hadHash.startsWith('#rsvp') || hadHash.includes('success=1'))) {
+        // убираем hash до того, как браузер к нему прокрутит
+        history.replaceState(null, '', location.pathname + location.search);
         const note = document.createElement('div');
         note.className = 'max-w-xl mx-auto my-4 p-4 rounded bg-oliveLight/40 text-oliveDark text-center border border-olive/30';
         note.textContent = 'Спасибо! Ваша заявка отправлена.';
         const rsvp = document.getElementById('rsvp');
         if (rsvp) rsvp.prepend(note);
+        // остаёмся наверху
+        window.scrollTo({top: 0});
       }
     }
 
